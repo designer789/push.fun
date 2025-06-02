@@ -1,26 +1,101 @@
 @import "tailwindcss";
+@import "../styles/animations.css";
+@import "../styles/spaceship.css";
+
+/* Enable smooth scrolling for navigation */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Custom TT Firs Neue Font Definitions */
+@font-face {
+  font-family: 'TT Firs Neue Bold';
+  src: url('/fonts/TT Firs Neue Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Firs Neue DemiBold';
+  src: url('/fonts/TT Firs Neue DemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Firs Neue Medium';
+  src: url('/fonts/TT Firs Neue Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Firs Neue Regular';
+  src: url('/fonts/TT Firs Neue Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Firs Neue Light';
+  src: url('/fonts/TT Firs Neue Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #1e1d23;
+  --foreground: #f3f4f6;
+  --primary: #f97316;
+  --primary-foreground: #ffffff;
+  --secondary: #374151;
+  --accent: #ea580c;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --font-tt-firs-bold: 'TT Firs Neue Bold', system-ui, sans-serif;
+  --font-tt-firs-demibold: 'TT Firs Neue DemiBold', system-ui, sans-serif;
+  --font-tt-firs-medium: 'TT Firs Neue Medium', system-ui, sans-serif;
+  --font-tt-firs-regular: 'TT Firs Neue Regular', system-ui, sans-serif;
+  --font-tt-firs-light: 'TT Firs Neue Light', system-ui, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'TT Firs Neue Regular', system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+/* Custom utility classes for TT Firs Neue fonts */
+.font-tt-firs-bold {
+  font-family: 'TT Firs Neue Bold', system-ui, sans-serif;
+}
+
+.font-tt-firs-demibold {
+  font-family: 'TT Firs Neue DemiBold', system-ui, sans-serif;
+}
+
+.font-tt-firs-medium {
+  font-family: 'TT Firs Neue Medium', system-ui, sans-serif;
+}
+
+.font-tt-firs-regular {
+  font-family: 'TT Firs Neue Regular', system-ui, sans-serif;
+}
+
+.font-tt-firs-light {
+  font-family: 'TT Firs Neue Light', system-ui, sans-serif;
 }

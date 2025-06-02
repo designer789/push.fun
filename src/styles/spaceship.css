@@ -1,0 +1,331 @@
+/* Spaceship Component Styles */
+
+:root {
+  --ship-size: 8vmin;
+  --sky-color: #1c1740;
+  --ship-color: #e4e4e4;
+  --ship-cap-color: #f97316;
+  --ship-wing-color: #91C8FE;
+  --ship-window-trim-color: #f97316;
+  --ship-booster-color: #c38382;
+  --star-color: white;
+  --stars-sm-speed: 5s;
+  --stars-md-speed: 2s;
+  --stars-lg-speed: 1s;
+}
+
+/* Visual container - low z-index */
+.spaceship-visual-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  will-change: transform;
+  transition: transform 0.4s ease;
+  pointer-events: none;
+  z-index: -10;
+}
+
+.ship,
+.star-field {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  will-change: transform;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.star-field {
+  width: 100%;
+  height: 100%;
+  transition: transform 1s ease-out;
+}
+
+/* Active state animations */
+.spaceship-visual-container.active .stars-sm:before,
+.spaceship-visual-container.active .stars-sm:after {
+  animation-duration: calc(var(--stars-sm-speed) / 2);
+}
+
+.spaceship-visual-container.active .stars-sm:after {
+  animation-delay: calc(var(--stars-sm-speed) / -4);
+}
+
+.spaceship-visual-container.active .stars-md:before,
+.spaceship-visual-container.active .stars-md:after {
+  animation-duration: calc(var(--stars-md-speed) / 2);
+}
+
+.spaceship-visual-container.active .stars-md:after {
+  animation-delay: calc(var(--stars-md-speed) / -4);
+}
+
+.spaceship-visual-container.active .stars-lg:before,
+.spaceship-visual-container.active .stars-lg:after {
+  animation-duration: calc(var(--stars-lg-speed) / 2);
+}
+
+.spaceship-visual-container.active .stars-lg:after {
+  animation-delay: calc(var(--stars-lg-speed) / -4);
+}
+
+.spaceship-visual-container.active .ship .wrapper {
+  animation: speed-up-ship 80ms linear infinite alternate;
+}
+
+.spaceship-visual-container.active .ship .exhaust {
+  animation: speed-up-exhaust 80ms linear infinite alternate;
+}
+
+/* Ship styles */
+.ship .wrapper {
+  display: flex;
+}
+
+.ship .body {
+  position: relative;
+  background-color: var(--ship-color);
+  border-radius: 0 0 50% 50% / 76% 76% 15% 15%;
+}
+
+.ship .body:before {
+  content: "";
+  position: absolute;
+  border-radius: 50% 50% 50% 50% / 76% 76% 25% 25%;
+}
+
+.ship .main {
+  width: var(--ship-size);
+  height: calc(var(--ship-size) * 1.5);
+  box-shadow: inset rgba(0, 0, 0, 0.15) -0.5vmin 0 2vmin 0;
+}
+
+.ship .main:before {
+  bottom: 80%;
+  width: 100%;
+  height: 75%;
+  background-color: inherit;
+  box-shadow: inset rgba(0, 0, 0, 0.15) -0.5vmin 1vmin 1vmin 0;
+}
+
+.ship .main:after {
+  content: "";
+  position: absolute;
+  bottom: 75%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border: calc(var(--ship-size) / 15) solid var(--ship-window-trim-color);
+  width: calc(var(--ship-size) / 1.8);
+  height: calc(var(--ship-size) / 1.8);
+  box-shadow: inset rgba(0, 0, 0, 0.075) -2vmin -2vmin 0 0,
+    inset rgba(0, 0, 0, 0.1) -1vmin -1.5vmin 0 0;
+  border-radius: 100%;
+}
+
+.ship .side {
+  width: calc(var(--ship-size) / 3);
+  height: var(--ship-size);
+  box-shadow: inset rgba(0, 0, 0, 0.1) -0.5vmin 0 1vmin 0,
+    inset rgba(0, 0, 0, 0.1) 0.5vmin 0 1vmin 0;
+}
+
+.ship .side:before {
+  bottom: 90%;
+  width: 100%;
+  height: 35%;
+  background-color: var(--ship-cap-color);
+  box-shadow: inset rgba(0, 0, 0, 0.2) -0.5vmin 1vmin 1vmin 0,
+    inset rgba(255, 255, 255, 0.2) 0.5vmin 1vmin 1vmin 0;
+}
+
+.ship .side.left {
+  left: 1px;
+}
+
+.ship .side.right {
+  right: 1px;
+}
+
+.ship .wing {
+  position: absolute;
+  bottom: 2vmin;
+  background-color: var(--ship-wing-color);
+  width: calc(var(--ship-size) / 2);
+  height: calc(var(--ship-size) / 1.5);
+  z-index: 1;
+  box-shadow: inset rgba(0, 0, 0, 0.1) -0.5vmin 1vmin 1vmin 0,
+    inset rgba(255, 255, 255, 0.1) 0.5vmin 1vmin 1vmin 0;
+}
+
+.ship .wing.left {
+  right: 100%;
+  border-radius: 100% 0 10% 10%;
+}
+
+.ship .wing.right {
+  left: 100%;
+  border-radius: 0 100% 10% 10%;
+}
+
+.ship .booster {
+  position: absolute;
+  top: 80%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: calc(var(--ship-size) / 1.2);
+  height: calc(var(--ship-size) / 2.5);
+  background-color: var(--ship-booster-color);
+  border-radius: 0 0 50% 50% / 76% 76% 35% 35%;
+  z-index: -1;
+  box-shadow: inset rgba(0, 0, 0, 0.3) -0.5vmin 1vmin 1vmin 0,
+    inset rgba(255, 255, 255, 0.3) 0.5vmin 1vmin 1vmin 0, black 0 0 2vmin;
+}
+
+.ship .exhaust {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: calc(var(--ship-size) / 1.4);
+  height: 80%;
+  border-radius: 0 0 100% 100%;
+  background-image: linear-gradient(to bottom, #f97316, transparent 70%);
+  z-index: -2;
+  transform-origin: 50% 0;
+  animation: exhaust 0.1s linear alternate infinite;
+}
+
+/* Stars */
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.stars:before,
+.stars:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: stars linear infinite;
+  transform: translateY(-100vh);
+}
+
+.stars-sm {
+  width: 1px;
+  height: 1px;
+}
+
+.stars-sm:before,
+.stars-sm:after {
+  box-shadow: 
+    10vw 10vh var(--star-color), 20vw 30vh var(--star-color), 30vw 20vh var(--star-color),
+    40vw 40vh var(--star-color), 50vw 15vh var(--star-color), 60vw 35vh var(--star-color),
+    70vw 25vh var(--star-color), 80vw 45vh var(--star-color), 90vw 5vh var(--star-color),
+    15vw 50vh var(--star-color), 25vw 60vh var(--star-color), 35vw 55vh var(--star-color),
+    45vw 65vh var(--star-color), 55vw 70vh var(--star-color), 65vw 75vh var(--star-color),
+    75vw 80vh var(--star-color), 85vw 85vh var(--star-color), 95vw 90vh var(--star-color),
+    105vw 25vh var(--star-color), 115vw 45vh var(--star-color), 125vw 15vh var(--star-color),
+    135vw 55vh var(--star-color), 145vw 35vh var(--star-color), 155vw 65vh var(--star-color),
+    165vw 45vh var(--star-color), 175vw 25vh var(--star-color), 185vw 75vh var(--star-color),
+    -10vw 40vh var(--star-color), -20vw 60vh var(--star-color), -30vw 30vh var(--star-color),
+    -40vw 70vh var(--star-color), -50vw 20vh var(--star-color), -60vw 50vh var(--star-color),
+    -70vw 80vh var(--star-color), -80vw 10vh var(--star-color), -90vw 60vh var(--star-color),
+    12vw 95vh var(--star-color), 22vw 85vh var(--star-color), 32vw 105vh var(--star-color),
+    42vw 115vh var(--star-color), 52vw 95vh var(--star-color), 62vw 125vh var(--star-color),
+    72vw 105vh var(--star-color), 82vw 135vh var(--star-color), 92vw 115vh var(--star-color);
+  animation-duration: var(--stars-sm-speed);
+}
+
+.stars-sm:after {
+  animation-delay: calc(var(--stars-sm-speed) / -2);
+}
+
+.stars-md {
+  width: 2px;
+  height: 2px;
+}
+
+.stars-md:before,
+.stars-md:after {
+  box-shadow: 
+    15vw 15vh var(--star-color), 35vw 25vh var(--star-color), 55vw 35vh var(--star-color),
+    75vw 45vh var(--star-color), 25vw 55vh var(--star-color), 45vw 65vh var(--star-color),
+    65vw 75vh var(--star-color), 85vw 85vh var(--star-color), 105vw 35vh var(--star-color),
+    125vw 55vh var(--star-color), 145vw 25vh var(--star-color), 165vw 75vh var(--star-color),
+    -15vw 45vh var(--star-color), -35vw 65vh var(--star-color), -55vw 25vh var(--star-color),
+    -75vw 85vh var(--star-color), 18vw 95vh var(--star-color), 38vw 105vh var(--star-color),
+    58vw 115vh var(--star-color), 78vw 125vh var(--star-color);
+  animation-duration: var(--stars-md-speed);
+}
+
+.stars-md:after {
+  animation-delay: calc(var(--stars-md-speed) / -2);
+}
+
+.stars-lg {
+  width: 4px;
+  height: 4px;
+}
+
+.stars-lg:before,
+.stars-lg:after {
+  box-shadow: 
+    20vw 20vh var(--star-color), 40vw 40vh var(--star-color), 
+    60vw 60vh var(--star-color), 80vw 80vh var(--star-color),
+    120vw 30vh var(--star-color), 140vw 70vh var(--star-color),
+    -20vw 50vh var(--star-color), -40vw 30vh var(--star-color),
+    25vw 100vh var(--star-color), 65vw 110vh var(--star-color);
+  animation-duration: var(--stars-lg-speed);
+}
+
+.stars-lg:after {
+  animation-delay: calc(var(--stars-lg-speed) / -2);
+}
+
+/* Animations */
+@keyframes stars {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes exhaust {
+  to {
+    transform: scaleX(0.98) translateY(-1vmin);
+  }
+}
+
+@keyframes speed-up-exhaust {
+  from {
+    transform: scale(0.98, 1);
+  }
+  to {
+    transform: scale(0.96, 1.5);
+  }
+}
+
+@keyframes speed-up-ship {
+  from {
+    transform: translateY(-5%);
+  }
+  to {
+    transform: translateY(-3%);
+  }
+} 
