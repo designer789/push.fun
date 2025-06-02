@@ -3,13 +3,12 @@
 import React, { useState, useRef } from 'react';
 
 interface StepCardProps {
-  number: number;
   title: string;
   description: string;
   icon: React.ReactNode;
 }
 
-function StepCard({ number, title, description, icon }: StepCardProps): React.JSX.Element {
+function StepCard({ title, description, icon }: StepCardProps): React.JSX.Element {
   const [isShaking, setIsShaking] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -69,7 +68,6 @@ export default function TokenJourney(): React.JSX.Element {
         {/* Steps grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <StepCard 
-            number={1}
             title="Create a Meme Token in Seconds"
             description="Get your token live in under 60 seconds—quick, easy, and fun."
             icon={
@@ -80,7 +78,6 @@ export default function TokenJourney(): React.JSX.Element {
           />
           
           <StepCard 
-            number={2}
             title="Fair-buy Made Simple"
             description="Fair-buy uses a bonding curve to ensure fair token distribution, with the price rising as more tokens are minted."
             icon={
@@ -91,7 +88,6 @@ export default function TokenJourney(): React.JSX.Element {
           />
           
           <StepCard 
-            number={3}
             title="Launch and Lock"
             description="Once Fair-buy is complete, LP flows into a Raydium permanently locked."
             icon={
